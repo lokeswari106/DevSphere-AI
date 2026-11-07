@@ -1,0 +1,77 @@
+{
+  "$defs": {
+    "PlanTask": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "agent": {
+          "title": "Agent",
+          "type": "string"
+        },
+        "depends_on": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Depends On",
+          "type": "array"
+        },
+        "acceptance": {
+          "title": "Acceptance",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "agent",
+        "depends_on",
+        "acceptance"
+      ],
+      "title": "PlanTask",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "classification": {
+      "title": "Classification",
+      "type": "string"
+    },
+    "milestones": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Milestones",
+      "type": "array"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/PlanTask"
+      },
+      "title": "Tasks",
+      "type": "array"
+    },
+    "constraints": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Constraints",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "classification",
+    "milestones",
+    "tasks",
+    "constraints"
+  ],
+  "title": "Plan",
+  "type": "object"
+}

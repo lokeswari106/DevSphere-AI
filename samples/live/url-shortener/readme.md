@@ -1,0 +1,3 @@
+# URL Shortener
+
+Use Python3.12. Install dependencies with pip install -r requirements.txt. Run uvicorn app:app --host 127.0.0.1 --port 8000. DB_PATH selects the SQLite database. POST /links creates a code; GET /r/{code} redirects; GET /links/{code} returns statistics. No frontend is included. Real model code and test proposals required human review corrections. This is a local teaching application.

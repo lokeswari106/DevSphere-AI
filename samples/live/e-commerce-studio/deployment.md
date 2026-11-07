@@ -1,0 +1,1 @@
+To run the backend, use `pip install -r requirements.txt` and `uvicorn app:app --host 127.0.0.1 --port 8000`. For the frontend, run `npm install` and `npm run dev` in the frontend directory. The app uses SQLite and is configured with a default database path of `ecommerce.db`. The frontend communicates with the backend via the `/api` endpoint.

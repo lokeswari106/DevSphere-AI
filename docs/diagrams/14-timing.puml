@@ -1,0 +1,36 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Timing diagram
+robust "Workflow" as W
+robust "Approval" as A
+robust "Runner" as R
+@0
+W is running
+A is absent
+R is idle
+@10
+W is awaiting_approval
+A is pending
+@20
+A is approved
+W is testing
+R is running
+@40
+R is passed
+W is queued
+@50
+W is running
+@60
+W is awaiting_approval
+A is pending
+@70
+A is approved
+W is completed
+R is idle
+@enduml

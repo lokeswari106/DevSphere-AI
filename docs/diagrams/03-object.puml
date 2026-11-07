@@ -1,0 +1,32 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Object diagram
+object "student : User" as U {
+ email = student@example.com
+}
+object "urlShortener : Project" as P {
+ revision = 2
+}
+object "generation : Run" as R {
+ stage = architecture
+status = awaiting_approval
+}
+object "design : AgentTask" as T {
+ status = completed
+}
+object "reviewGate : Approval" as A {
+ checkpoint = architecture
+status = pending
+base_revision = 2
+}
+U --> P
+P --> R
+R --> T
+R --> A
+@enduml

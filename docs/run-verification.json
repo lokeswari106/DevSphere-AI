@@ -1,0 +1,65 @@
+{
+  "checked_at": "2026-11-07T17:29:01.927149+00:00",
+  "http_checks": [
+    {
+      "base_url": "http://localhost:8010",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "base_url": "http://localhost:8010",
+      "path": "/health/ready",
+      "status": 200
+    },
+    {
+      "base_url": "http://localhost:8010",
+      "path": "/api/projects",
+      "status": 401
+    },
+    {
+      "base_url": "https://richards-parental-air-ham.trycloudflare.com",
+      "path": "/",
+      "status": 200
+    },
+    {
+      "base_url": "https://richards-parental-air-ham.trycloudflare.com",
+      "path": "/health/ready",
+      "status": 200
+    },
+    {
+      "base_url": "https://richards-parental-air-ham.trycloudflare.com",
+      "path": "/api/projects",
+      "status": 401
+    }
+  ],
+  "runtime": {
+    "provider": "ollama",
+    "model": "qwen3:8b",
+    "runner_online": true,
+    "sandbox_enabled": true
+  },
+  "completed_demo_workflows": {
+    "URL Shortener": "completed",
+    "E-commerce Studio": "completed",
+    "Node Code Review": "completed"
+  },
+  "public_authenticated_projects": 200,
+  "public_secure_cookie": true,
+  "public_registration": 403,
+  "docker_image": "sha256:e32f34af4ee069608942d7be50168e090d12c9af2a15fe0a316deeae3f1e1025",
+  "backend_tests": {
+    "tests": "49",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "frontend_tests": 22,
+  "browser_tests": {
+    "startTime": "2026-11-07T17:27:20.474Z",
+    "duration": 17092.932999999997,
+    "expected": 8,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

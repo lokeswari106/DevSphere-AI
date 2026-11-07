@@ -1,0 +1,33 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Component diagram
+[React browser] as UI
+package "FastAPI modular monolith" {
+[Authentication and ownership] as Auth
+[REST API] as API
+[Orchestrator] as O
+[Eight agent modules] as Agents
+[Artifacts and exports] as Artifacts
+}
+database PostgreSQL as DB
+[Ollama / OpenAI] as LLM
+[Trusted runner process] as Runner
+[Disposable test container] as Box
+UI --> API : HTTPS / polling
+API --> Auth
+API --> O
+API --> Artifacts
+O --> Agents
+Agents --> LLM : structured JSON
+O --> DB
+Artifacts --> DB
+Auth --> DB
+Runner --> DB : claim approved job
+Runner --> Box : bounded execution
+@enduml

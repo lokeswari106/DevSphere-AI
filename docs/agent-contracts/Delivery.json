@@ -1,0 +1,54 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "maxLength": 600,
+      "title": "Summary",
+      "type": "string"
+    },
+    "readme_markdown": {
+      "maxLength": 2500,
+      "title": "Readme Markdown",
+      "type": "string"
+    },
+    "architecture_markdown": {
+      "maxLength": 2500,
+      "title": "Architecture Markdown",
+      "type": "string"
+    },
+    "testing_markdown": {
+      "maxLength": 2500,
+      "title": "Testing Markdown",
+      "type": "string"
+    },
+    "deployment_markdown": {
+      "maxLength": 2500,
+      "title": "Deployment Markdown",
+      "type": "string"
+    },
+    "final_report_markdown": {
+      "maxLength": 2500,
+      "title": "Final Report Markdown",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 8,
+      "title": "Limitations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "readme_markdown",
+    "architecture_markdown",
+    "testing_markdown",
+    "deployment_markdown",
+    "final_report_markdown",
+    "limitations"
+  ],
+  "title": "Delivery",
+  "type": "object"
+}

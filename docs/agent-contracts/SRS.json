@@ -1,0 +1,109 @@
+{
+  "$defs": {
+    "UserStory": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "benefit": {
+          "title": "Benefit",
+          "type": "string"
+        },
+        "acceptance_criteria": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Acceptance Criteria",
+          "type": "array"
+        }
+      },
+      "required": [
+        "role",
+        "action",
+        "benefit",
+        "acceptance_criteria"
+      ],
+      "title": "UserStory",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "functional_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Functional Requirements",
+      "type": "array"
+    },
+    "non_functional_requirements": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Non Functional Requirements",
+      "type": "array"
+    },
+    "business_rules": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Business Rules",
+      "type": "array"
+    },
+    "user_stories": {
+      "items": {
+        "$ref": "#/$defs/UserStory"
+      },
+      "title": "User Stories",
+      "type": "array"
+    },
+    "edge_cases": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Edge Cases",
+      "type": "array"
+    },
+    "complexity": {
+      "title": "Complexity",
+      "type": "string"
+    },
+    "open_questions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Open Questions",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "functional_requirements",
+    "non_functional_requirements",
+    "business_rules",
+    "user_stories",
+    "edge_cases",
+    "complexity",
+    "open_questions",
+    "assumptions"
+  ],
+  "title": "SRS",
+  "type": "object"
+}

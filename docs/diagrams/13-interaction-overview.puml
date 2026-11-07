@@ -1,0 +1,27 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Interaction overview diagram
+start
+:ref - Authenticate and select owned project;
+if (Workflow type?) then (full)
+:ref - Plan, requirements and design approvals;
+:ref - Source generation and approval;
+elseif (review only?) then (yes)
+:ref - Upload and approve source snapshot;
+else (repair)
+:ref - Read failure logs and prior artifacts;
+:ref - Propose targeted changes;
+endif
+:ref - Parallel review and security interaction;
+if (Tests requested?) then (yes)
+:ref - Test approval and isolated execution;
+endif
+:ref - Documentation and delivery approval;
+stop
+@enduml

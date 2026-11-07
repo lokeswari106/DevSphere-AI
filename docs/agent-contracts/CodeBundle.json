@@ -1,0 +1,64 @@
+{
+  "$defs": {
+    "SourceFile": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "content": {
+          "maxLength": 100000,
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "content"
+      ],
+      "title": "SourceFile",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "files": {
+      "items": {
+        "$ref": "#/$defs/SourceFile"
+      },
+      "maxItems": 60,
+      "minItems": 1,
+      "title": "Files",
+      "type": "array"
+    },
+    "setup_instructions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Setup Instructions",
+      "type": "array"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "files",
+    "setup_instructions",
+    "limitations"
+  ],
+  "title": "CodeBundle",
+  "type": "object"
+}

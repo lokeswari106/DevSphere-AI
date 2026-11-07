@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "keys": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Keys",
+          "type": "array"
+        },
+        "indexes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Indexes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "fields",
+        "keys",
+        "indexes"
+      ],
+      "title": "Entity",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "migration_sql": {
+      "title": "Migration Sql",
+      "type": "string"
+    },
+    "er_diagram": {
+      "title": "Er Diagram",
+      "type": "string"
+    },
+    "openapi_json": {
+      "title": "Openapi Json",
+      "type": "string"
+    },
+    "performance_notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Performance Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "entities",
+    "migration_sql",
+    "er_diagram",
+    "openapi_json",
+    "performance_notes"
+  ],
+  "title": "DatabaseDesign",
+  "type": "object"
+}

@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Communication diagram
+object "developer:User" as U
+object "browser:Workspace" as B
+object "api:ApprovalService" as API
+object "db:SharedState" as DB
+object "runner:TrustedController" as R
+object "box:IsolatedProcess" as S
+U --> B : 1. approve execution
+B --> API : 1.1 decision(hash,revision)
+API --> DB : 1.2 persist approved snapshot
+R --> DB : 2. claim queued job
+R --> S : 2.1 execute fixed recipe
+S --> R : 2.2 exit code and logs
+R --> DB : 2.3 persist actual result
+B --> API : 3. poll tests
+API --> DB : 3.1 read owned results
+API --> B : 3.2 counts and source hash
+@enduml

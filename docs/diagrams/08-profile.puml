@@ -1,0 +1,26 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Profile diagram
+class Component <<metaclass>>
+class Artifact <<metaclass>>
+class "AI Agent" as Agent <<stereotype>> {
+ outputSchema: string
+maxAttempts: integer = 3
+}
+class "Approval Gate" as Gate <<stereotype>> {
+ bindsRevision: boolean = true
+bindsHash: boolean = true
+}
+class "Untrusted Source" as Source <<stereotype>> {
+ executableOnlyInSandbox: boolean = true
+}
+Agent ..> Component : extends
+Gate ..> Component : extends
+Source ..> Artifact : extends
+@enduml

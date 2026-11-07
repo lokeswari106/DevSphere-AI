@@ -1,0 +1,44 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Activity diagram
+start
+:Create project and requirement;
+:Orchestrator generates plan;
+:Review or edit plan;
+:Requirements agent;
+:Approve requirements;
+:Architecture agent;
+:Approve architecture;
+:Database / API agent;
+:Approve database and API;
+:Code generation agent;
+:Approve source changes;
+fork
+:Quality review agent;
+fork again
+:Security agent;
+end fork
+:Generate test files;
+:Approve tests and execution;
+:Run isolated tests;
+if (Tests passed?) then (yes)
+:Generate documentation;
+else (no)
+:Inspect actual failure;
+if (Request repair?) then (yes)
+:Start repair workflow with prior context;
+:Reapprove changes and rerun;
+else (no)
+:Continue only with disclosed failures;
+endif
+:Generate documentation;
+endif
+:Review final delivery;
+stop
+@enduml

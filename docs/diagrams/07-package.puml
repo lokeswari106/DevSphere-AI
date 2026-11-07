@@ -1,0 +1,31 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Package diagram
+package "app.api" as API
+package "app.security" as Sec
+package "app.schemas / contracts" as Schemas
+package "app.services.orchestration" as Orch
+package "app.agents" as Agents
+package "app.services.provider" as Provider
+package "app.services.artifacts / exports" as Artifacts
+package "app.models / db" as DB
+package "scripts.run_sandbox_worker" as Runner
+package "app.services.sandbox" as Sandbox
+API --> Sec
+API --> Schemas
+API --> Orch
+API --> Artifacts
+Orch --> Agents
+Agents --> Provider
+Agents --> Schemas
+Orch --> DB
+Artifacts --> DB
+Runner --> Sandbox
+Runner --> DB
+@enduml

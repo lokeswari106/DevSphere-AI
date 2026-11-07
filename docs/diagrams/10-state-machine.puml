@@ -1,0 +1,28 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title State machine diagram
+[*] --> queued
+queued --> running : dispatcher claims lease
+running --> queued : stage completed
+running --> awaiting_approval : proposal persisted
+awaiting_approval --> queued : approve or regenerate
+awaiting_approval --> testing : approve test execution
+testing --> queued : tests passed
+testing --> awaiting_approval : tests failed
+running --> failed : retry budget exhausted
+running --> queued : expired lease recovered
+failed --> queued : explicit retry
+awaiting_approval --> completed : delivery approved
+queued --> cancelled : cancel
+running --> cancelled : cancel
+awaiting_approval --> cancelled : reject / cancel
+testing --> cancelled : cancel
+completed --> [*]
+cancelled --> [*]
+@enduml

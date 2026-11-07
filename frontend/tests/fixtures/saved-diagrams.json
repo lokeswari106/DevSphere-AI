@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Saved architecture diagram 1",
+    "source": "flowchart LR\nA[\"API\"] --> B[\"Storage\"]\nA --> C[\"Authentication\"]\nA --> D[\"Product\"]\nA --> E[\"Cart\"]\nA --> F[\"Order\"]\nA --> G[\"PaymentAdapter\"]"
+  },
+  {
+    "name": "Saved architecture diagram 2",
+    "source": "sequenceDiagram\nparticipant U as Browser\nparticipant A as API\nparticipant S as SessionService\nparticipant R as Repository\nparticipant P as PaymentAdapter\nU->>A: POST order with bearer token\nA->>S: Authenticate token\nS-->>A: User ID or unauthorized\nA->>R: Transaction - read owned cart, check stock, snapshot prices\nR-->>A: Pending order or validation error\nA->>P: Request payment intent\nP-->>A: Disabled - no money processed\nA-->>U: Order details and payment disabled"
+  },
+  {
+    "name": "Saved architecture diagram 3",
+    "source": "classDiagram\nclass User\nclass Session\nclass Product\nclass CartItem\nclass Order\nclass OrderItem\nUser \"1\" --> \"0..*\" Session : owns\nUser \"1\" --> \"0..*\" CartItem : owns\nProduct \"1\" --> \"0..*\" CartItem : references\nUser \"1\" --> \"0..*\" Order : places\nOrder \"1\" *-- \"1..*\" OrderItem : contains\nProduct \"1\" --> \"0..*\" OrderItem : snapshots"
+  },
+  {
+    "name": "Saved database diagram 4",
+    "source": "erDiagram\n users ||--o{ cart_items : owns\n products ||--o{ cart_items : contains\n users ||--o{ orders : places\n orders ||--|{ order_items : contains\n products ||--o{ order_items : snapshots\n orders ||--o{ payment_intents : tracks"
+  },
+  {
+    "name": "Saved architecture diagram 5",
+    "source": "flowchart LR\nA[\"API\"] --> B[\"Validator\"]\nB --> C[\"CodeGenerator\"]\nC --> D[\"Repository\"]\nD --> E[\"SQLite\"]"
+  },
+  {
+    "name": "Saved architecture diagram 6",
+    "source": "sequenceDiagram\nparticipant C as Client\nparticipant A as API\nparticipant V as Validator\nparticipant G as CodeGenerator\nparticipant R as Repository\nparticipant D as SQLite\nC->>A: POST /links with URL\nA->>V: Validate URL\nV-->>A: Valid\nloop At most five collision attempts\nA->>G: Generate random code\nG-->>A: Eight-character code\nA->>R: Insert link\nR->>D: Parameterized INSERT\nD-->>R: Inserted or unique conflict\nR-->>A: Result\nend\nA-->>C: 201 Created or 503 exhausted\nC->>A: GET /r/{code}\nA->>R: Resolve and atomically increment\nR->>D: SELECT and UPDATE in transaction\nD-->>R: Destination\nR-->>A: URL or missing\nA-->>C: 307 redirect or 404"
+  },
+  {
+    "name": "Saved architecture diagram 7",
+    "source": "classDiagram\nclass Link {\n +str short_code\n +str original_url\n +int click_count\n}\nclass Repository {\n +insert(link)\n +resolveAndIncrement(code)\n +stats(code)\n}\nclass CodeGenerator {\n +generate() str\n}\nclass API\nAPI ..> CodeGenerator : uses\nAPI ..> Repository : uses\nRepository --> Link : persists"
+  },
+  {
+    "name": "Saved database diagram 8",
+    "source": "erDiagram\n Link {\n string short_code PK\n string original_url\n int click_count\n }"
+  },
+  {
+    "name": "Saved architecture diagram 9",
+    "source": "flowchart LR\nA[\"API\"] --> B[\"Storage\"]\nA --> C[\"Authentication\"]\nC --> D[\"Product Management\"]\nC --> E[\"Cart\"]\nC --> F[\"Order\"]\nF --> G[\"Payment\"]"
+  },
+  {
+    "name": "Saved architecture diagram 10",
+    "source": "sequenceDiagram\nparticipant A as API\nparticipant B as Storage\nparticipant C as Authentication\nparticipant D as Product Management\nparticipant E as Cart\nparticipant F as Order\nparticipant G as Payment\nA->>C: User login request\nC->>B: Validate user\nB-->>C: Return user data\nC->>A: Return authenticated user\nA->>E: Add item to cart\nE->>B: Save cart item\nB-->>E: Confirm save\nA->>F: Place order\nF->>B: Save order\nB-->>F: Confirm save\nF->>G: Process payment\nG-->>F: Return test payment status\nF-->>A: Return order confirmation"
+  },
+  {
+    "name": "Saved architecture diagram 11",
+    "source": "classDiagram\nclass User{\n  +id: UUID\n  +email: str\n  +password_hash: str\n  +cart: Cart\n  +orders: List[Order]\n}\nclass Cart{\n  +id: UUID\n  +items: List[CartItem]\n  +user: User\n}\nclass CartItem{\n  +id: UUID\n  +product: Product\n  +quantity: int\n}\nclass Product{\n  +id: UUID\n  +name: str\n  +price: float\n  +stock: int\n}\nclass Order{\n  +id: UUID\n  +user: User\n  +items: List[OrderItem]\n  +total: float\n  +payment_status: str\n}\nclass OrderItem{\n  +id: UUID\n  +product: Product\n  +quantity: int\n  +price: float\n}\nUser \"0..1\" --\"owns\" Cart\nUser \"0..1\" --\"has\" Order\nProduct \"0..1\" --\"included in\" OrderItem"
+  },
+  {
+    "name": "Saved database diagram 12",
+    "source": "erDiagram\n  User ||--o{ Cart : \"owns\"\n  User ||--o{ Order : \"has\"\n  Product ||--o{ OrderItem : \"included in\"\n  Cart ||--o{ CartItem : \"contains\"\n  Order ||--o{ OrderItem : \"contains\"\n  User }o--|{ CartItem : \"has\"\n  User }o--|{ OrderItem : \"has\"\n  Product }o--|{ OrderItem : \"has\"\n\n  User {\n    id: UUID\n    email: str\n    password_hash: str\n    is_admin: bool\n  }\n\n  Product {\n    id: UUID\n    name: str\n    price: float\n    stock: int\n  }\n\n  Cart {\n    id: UUID\n    user_id: UUID\n  }\n\n  CartItem {\n    id: UUID\n    cart_id: UUID\n    product_id: UUID\n    quantity: int\n  }\n\n  Order {\n    id: UUID\n    user_id: UUID\n    total: float\n    payment_status: str\n  }\n\n  OrderItem {\n    id: UUID\n    order_id: UUID\n    product_id: UUID\n    quantity: int\n    price: float\n  }"
+  }
+]

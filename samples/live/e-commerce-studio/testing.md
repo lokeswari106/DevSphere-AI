@@ -1,0 +1,1 @@
+Seven human-authored backend tests passed in the isolated sandbox, covering registration, login, cart validation, checkout, stock management, user isolation, and payment handling. No frontend tests were executed. Payments are disabled and always return a 503 error. The tests ensure secure password storage, session management, and correct database interactions.

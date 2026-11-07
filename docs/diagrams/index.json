@@ -1,0 +1,77 @@
+[
+  {
+    "file": "01-use-case",
+    "title": "Use case diagram",
+    "explanation": "Shows developer actions and the boundaries of the AI provider and isolated runner."
+  },
+  {
+    "file": "02-class",
+    "title": "Class diagram",
+    "explanation": "Core persisted entities and service responsibilities. The complete column dictionary is in the database schema."
+  },
+  {
+    "file": "03-object",
+    "title": "Object diagram",
+    "explanation": "Illustrative snapshot of a workflow paused for architecture review; identifiers here are explanatory examples."
+  },
+  {
+    "file": "04-component",
+    "title": "Component diagram",
+    "explanation": "One modular application, one relational database and one separate trusted runner. Agent modules are Python functions."
+  },
+  {
+    "file": "05-composite-structure",
+    "title": "Composite structure diagram",
+    "explanation": "Internal collaboration of the orchestrator component; ports are logical interfaces rather than separate network services."
+  },
+  {
+    "file": "06-deployment",
+    "title": "Deployment diagram",
+    "explanation": "Local execution has a VM boundary for generated code. A free temporary tunnel exposes only the authenticated application."
+  },
+  {
+    "file": "07-package",
+    "title": "Package diagram",
+    "explanation": "Source dependencies follow the modular monolith layout. The API never imports the sandbox executor."
+  },
+  {
+    "file": "08-profile",
+    "title": "Profile diagram",
+    "explanation": "Design vocabulary used in this project. Stereotypes describe responsibilities; enforcement is implemented in validation, transactions and runner constraints."
+  },
+  {
+    "file": "09-activity",
+    "title": "Activity diagram",
+    "explanation": "Full workflow includes explicit human gates and a conditional repair loop. Review-only workflows omit generation stages."
+  },
+  {
+    "file": "10-state-machine",
+    "title": "State machine diagram",
+    "explanation": "Persisted workflow status transitions, including a lease-expiry recovery path and cancellation."
+  },
+  {
+    "file": "11-sequence",
+    "title": "Sequence diagram",
+    "explanation": "Optimistic approval binds both artifact content and project revision, preventing a stale browser action from committing different work."
+  },
+  {
+    "file": "12-communication",
+    "title": "Communication diagram",
+    "explanation": "Numbered messages express collaboration around an approved test run. This uses object notation for UML communication links."
+  },
+  {
+    "file": "13-interaction-overview",
+    "title": "Interaction overview diagram",
+    "explanation": "High-level references to detailed interactions. Decisions route complete generation, review-only or repair without running every agent."
+  },
+  {
+    "file": "14-timing",
+    "title": "Timing diagram",
+    "explanation": "Illustrative ordering only; the horizontal units are logical ticks, not measured latency or a performance benchmark."
+  },
+  {
+    "file": "15-database-er",
+    "title": "Database ER diagram",
+    "explanation": "All thirteen PostgreSQL tables are included. Project ownership is resolved through users and projects for every API operation."
+  }
+]

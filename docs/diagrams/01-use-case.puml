@@ -1,0 +1,34 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Use case diagram
+left to right direction
+actor Developer
+actor "AI provider" as LLM
+actor "Sandbox runner" as Runner
+rectangle "DevSphere AI" {
+usecase "Manage own projects" as P
+usecase "Plan and design" as D
+usecase "Approve / edit / regenerate" as A
+usecase "Generate source" as C
+usecase "Review and assess security" as R
+usecase "Run approved tests" as T
+usecase "Export delivery" as E
+}
+Developer --> P
+Developer --> D
+Developer --> A
+Developer --> C
+Developer --> R
+Developer --> T
+Developer --> E
+D --> LLM
+C --> LLM
+R --> LLM
+T --> Runner
+@enduml

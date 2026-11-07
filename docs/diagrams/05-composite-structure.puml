@@ -1,0 +1,28 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Composite structure diagram
+component "Orchestrator" {
+portin "Workflow command" as In
+portout "Provider adapter" as Out
+[Stage dispatcher] as D
+[Dependency validator] as V
+[Context builder] as C
+[Agent invocation] as I
+[Result validator] as R
+[Approval gate] as G
+In --> D
+D --> V
+V --> C
+C --> I
+I --> Out
+I --> R
+R --> G
+G --> D : after approval
+}
+@enduml

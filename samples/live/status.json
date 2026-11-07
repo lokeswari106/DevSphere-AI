@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-11-07T16:30:01.722282+00:00",
+  "provider": "real Ollama",
+  "projects": [
+    {
+      "name": "URL Shortener",
+      "run_id": "eafd085a-242e-4402-a25a-9d817aa87279",
+      "status": "completed",
+      "stage": 3,
+      "test_runs": [
+        {
+          "id": "9d9bd5fd-0f22-4343-a6a3-d6b093796e79",
+          "source_hash": "2f89b6a2989defee01789b51d2bc1801942354d16ac2264ab62bfe87168a02f9",
+          "test_status": "passed",
+          "total_tests": 5,
+          "passed_tests": 5,
+          "failed_tests": 0
+        }
+      ]
+    },
+    {
+      "name": "E-commerce Studio",
+      "run_id": "a98b9eea-b0b7-4c7b-a8e5-ac4eb2641fba",
+      "status": "completed",
+      "stage": 3,
+      "test_runs": [
+        {
+          "id": "c6401d1f-db82-4db0-b36c-46c6754d3837",
+          "source_hash": "e0269958b7c2e6e1d0124aded14e66f0f5c2c6583846df65bdf26f82e8ffbf37",
+          "test_status": "passed",
+          "total_tests": 7,
+          "passed_tests": 7,
+          "failed_tests": 0
+        }
+      ]
+    },
+    {
+      "name": "Node Code Review",
+      "run_id": "1d7a8097-dc00-4901-b5d1-73eac6d36173",
+      "status": "completed",
+      "stage": 4,
+      "test_runs": []
+    }
+  ]
+}

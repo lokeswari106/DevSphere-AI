@@ -1,0 +1,38 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Deployment diagram
+node "Browser / evaluator" as B
+cloud "Optional HTTPS tunnel" as T
+node "Student computer" {
+node "Trusted application processes" {
+artifact "FastAPI + compiled React :8010" as App
+artifact "Separate runner controller" as R
+artifact "Ollama :11434" as O
+}
+database "PostgreSQL :55433" as DB
+node "Dedicated Docker / Colima VM" {
+node "Disposable sandbox container" as S
+}
+}
+B --> App : localhost
+B --> T : HTTPS
+T --> App : local HTTP
+App --> DB
+App --> O
+R --> DB
+R --> S : no mounts / no network
+note bottom of S
+Read-only root
+non-root user
+512 MB
+one CPU
+time limit
+No database or model credentials
+end note
+@enduml

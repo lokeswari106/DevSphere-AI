@@ -1,0 +1,13 @@
+.git
+.env*
+.local
+**/.venv
+**/__pycache__
+**/node_modules
+frontend/dist
+frontend/test-results
+frontend/playwright-report
+docs
+output
+postman
+*.zip

@@ -1,0 +1,7 @@
+version: 1
+name: DevSphere Ollama contract fixture
+origin: http://127.0.0.1:11434
+interceptRequests: true
+scenarios:
+  - name: default
+    path: default.js

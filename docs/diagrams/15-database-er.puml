@@ -1,0 +1,106 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Database ER diagram
+hide circle
+entity users {
+ *id : varchar(36) <<PK>>
+ email : varchar(254) <<unique>>
+ password_hash : text
+}
+entity projects {
+ *id <<PK>>
+ user_id <<FK>>
+ revision : integer
+}
+entity project_requirements {
+ *id <<PK>>
+ project_id <<FK>>
+ requirement_content : jsonb
+ version : integer
+}
+entity workflow_runs {
+ *id <<PK>>
+ project_id <<FK>>
+ status : varchar
+ stage : integer
+}
+entity agent_tasks {
+ *id <<PK>>
+ project_id <<FK>>
+ run_id <<FK>>
+ input_data : jsonb
+ output_data : jsonb
+}
+entity agent_executions {
+ *id <<PK>>
+ project_id <<FK>>
+ agent_task_id <<FK>>
+ execution_logs : jsonb
+}
+entity generated_files {
+ *id <<PK>>
+ project_id <<FK>>
+ file_path : varchar
+ version : integer
+}
+entity code_reviews {
+ *id <<PK>>
+ project_id <<FK>>
+ run_id <<FK>>
+ file_id <<FK>>
+}
+entity test_results {
+ *id <<PK>>
+ project_id <<FK>>
+ run_id <<FK>>
+ source_hash : varchar
+}
+entity project_documents {
+ *id <<PK>>
+ project_id <<FK>>
+ version : integer
+ stale : boolean
+}
+entity project_versions {
+ *id <<PK>>
+ project_id <<FK>>
+ version_number : integer
+}
+entity approvals {
+ *id <<PK>>
+ project_id <<FK>>
+ run_id <<FK>>
+ decided_by <<FK>>
+}
+entity audit_events {
+ *id <<PK>>
+ project_id <<FK>>
+ user_id <<FK>>
+}
+users ||--o{ projects
+projects ||--o{ project_requirements
+projects ||--o{ workflow_runs
+projects ||--o{ agent_tasks
+projects ||--o{ agent_executions
+projects ||--o{ generated_files
+projects ||--o{ code_reviews
+projects ||--o{ test_results
+projects ||--o{ project_documents
+projects ||--o{ project_versions
+projects ||--o{ approvals
+projects ||--o{ audit_events
+workflow_runs ||--o{ agent_tasks
+agent_tasks ||--o{ agent_executions
+generated_files |o--o{ code_reviews
+workflow_runs ||--o{ code_reviews
+workflow_runs |o--o{ test_results
+workflow_runs |o--o{ approvals
+users |o--o{ approvals
+users |o--o{ audit_events
+@enduml

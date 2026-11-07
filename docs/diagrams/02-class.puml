@@ -1,0 +1,65 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Class diagram
+class User {
+ id
+email
+password_hash
+}
+class Project {
+ id
+revision
+project_status
+}
+class Run {
+ workflow_type
+stage
+status
+lease_until
+}
+class AgentTask {
+ task_name
+input_data
+output_data
+}
+class Approval {
+ checkpoint
+artifact_hash
+base_revision
+status
+}
+class GeneratedFile {
+ file_path
+version
+content_hash
+}
+class TestResult {
+ source_hash
+test_status
+execution_output
+}
+class Orchestrator {
+ +advance(run_id)
++perform(run_id,stage)
+}
+class ArtifactService {
+ +propose()
++apply_files()
++invalidate()
+}
+User "1" --> "0..*" Project : owns
+Project "1" *-- "0..*" Run
+Run "1" *-- "0..*" AgentTask
+Project "1" *-- "0..*" Approval
+Project "1" *-- "0..*" GeneratedFile
+Project "1" *-- "0..*" TestResult
+Orchestrator ..> Run
+Orchestrator ..> ArtifactService
+ArtifactService ..> Approval
+@enduml

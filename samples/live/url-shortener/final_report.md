@@ -1,0 +1,3 @@
+# URL Shortener — Final report
+
+A reviewed FastAPI and SQLite teaching API provides URL creation, redirects with atomic click increments, and statistics. Real model source and test drafts required recorded human corrections. Five reviewed tests passed in the isolated sandbox against the current source. Earlier oversized stages were cancelled and retained in history. No coverage, load or security certification is claimed. Authentication, rate limiting, expiration and measured scaling remain future work. The server never fetches destinations; literal-address checks do not guarantee DNS safety.

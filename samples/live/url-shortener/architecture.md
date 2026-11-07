@@ -1,0 +1,3 @@
+# Architecture
+
+FastAPI routes use per-request SQLite connections. The Link primary key enforces unique stored codes. Creation tries at most five random candidates, then returns503 if collisions persist. Candidates are not guaranteed to differ. Redirects return307 and increment clicks transactionally. Validation rejects non-HTTP(S), credentials, localhost and nonpublic literal IPs. The server never fetches or resolves destinations.

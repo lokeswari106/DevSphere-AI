@@ -1,0 +1,21 @@
+{
+  "basis": "Real HTTP adapter against test-only Postman simulation",
+  "cases": [
+    {
+      "case": "ok",
+      "outcome": "valid structured response"
+    },
+    {
+      "case": "failure",
+      "outcome": "HTTPStatusError"
+    },
+    {
+      "case": "malformed",
+      "outcome": "ValidationError"
+    },
+    {
+      "case": "timeout",
+      "outcome": "ReadTimeout"
+    }
+  ]
+}

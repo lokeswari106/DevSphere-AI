@@ -1,0 +1,35 @@
+@startuml
+skinparam dpi 180
+skinparam backgroundColor white
+skinparam defaultFontName SansSerif
+skinparam defaultFontSize 14
+skinparam shadowing false
+skinparam ArrowColor #255F54
+skinparam roundcorner 8
+title Sequence diagram
+actor Developer as U
+participant Browser as B
+participant API
+participant Orchestrator as O
+database PostgreSQL as DB
+participant "AI agent / provider" as AI
+U -> B : start workflow
+B -> API : POST execute
+API -> DB : ownership + active-run constraint
+API --> B : 202 run_id
+O -> DB : claim queued run with lease
+O -> AI : structured context and output schema
+AI --> O : structured artifact
+O -> DB : store task output and pending approval
+B -> API : poll workflow
+API --> B : artifact + hash + revision
+U -> B : inspect / edit / approve
+B -> API : POST decision(hash, revision)
+API -> DB : lock owned project and proposal
+alt matching hash and revision
+API -> DB : commit version + enqueue next stage
+API --> B : 200 approved
+else stale proposal
+API --> B : 409 conflict
+end
+@enduml

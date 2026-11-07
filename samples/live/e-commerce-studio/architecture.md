@@ -1,0 +1,1 @@
+The app uses FastAPI for the backend, handling user authentication, product management, cart operations, and order processing. SQLite is used for the database, with a seeded classroom catalogue. The frontend is built with React and Vite, handling UI interactions and API calls to the backend. The payment system is disabled and always returns a 503 error.

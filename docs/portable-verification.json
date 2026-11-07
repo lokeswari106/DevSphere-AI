@@ -1,0 +1,49 @@
+{
+  "checked_at": "2026-11-07T18:13:00.564772+00:00",
+  "base_url": "http://localhost:8013",
+  "host": "macOS",
+  "application_runtime": "Linux Docker containers",
+  "ollama": "Existing real native Ollama reached from the application container; bundled Ollama download path not exercised",
+  "runner_online": true,
+  "provider": "ollama",
+  "model": "qwen3:8b",
+  "project_id": "d1f8bd24-2cd0-484f-a8e3-d117522a6aff",
+  "tests": {
+    "status": "passed",
+    "passed": 1,
+    "failed": 0
+  },
+  "real_model_review_run": "5aa77a67-addf-4507-b0e3-3e5b72fd7ced",
+  "restart_persistence": true,
+  "real_model_review": {
+    "status": "completed",
+    "agents": [
+      {
+        "agent_id": "review",
+        "usage": {
+          "model": "qwen3:8b",
+          "provider": "ollama",
+          "input_tokens": 1012,
+          "output_tokens": 44
+        }
+      },
+      {
+        "agent_id": "security",
+        "usage": {
+          "model": "qwen3:8b",
+          "provider": "ollama",
+          "input_tokens": 979,
+          "output_tokens": 73
+        }
+      }
+    ]
+  },
+  "restart_checked_at": "2026-11-07T18:16:14.885408+00:00",
+  "retained_after_restart": [
+    "account",
+    "project",
+    "source files",
+    "sandbox test result",
+    "completed real model review"
+  ]
+}

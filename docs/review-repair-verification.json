@@ -1,0 +1,106 @@
+{
+  "ecommerce": {
+    "project": "E-commerce application",
+    "revision": 15,
+    "workflow": "completed",
+    "source_hash": "14f2793c35c689634bc053aa251d14490dad65602877429ff57727cd07a62d2d",
+    "test_id": "a45c4a05-95ca-4156-b8a2-e70d6f83e5f8",
+    "passed": 24,
+    "failed": 0,
+    "actual_log": "........................                                                 [100%]\n=============================== warnings summary ===============================\n../usr/local/lib/python3.12/site-packages/starlette/testclient.py:51\n  /usr/local/lib/python3.12/site-packages/starlette/testclient.py:51: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.\n    _PortalFactoryType = Callable[[], AbstractContextManager[anyio.abc.BlockingPortal]]\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n--------------------- generated xml file: /tmp/result.xml ----------------------\n24 passed, 1 warning in 9.81s\n\nDEVSPHERE_RESULT={\"exit_code\": 0, \"counts\": {\"total\": 24, \"passed\": 24, \"failed\": 0, \"skipped\": 0}, \"recipe\": \"python\"}\n",
+    "repair_author": "assistant maintenance requested by user",
+    "documentation": "Maintenance-authored report; failed model attempts preserved"
+  },
+  "live_review": {
+    "project_id": "c3af7e18-b8e7-4e01-8ecf-348f28a0889f",
+    "source": "Submitted through actual Firefox paste form",
+    "findings": [
+      {
+        "file_path": "pricing.js",
+        "line_number": 5,
+        "severity": "high",
+        "issue_description": "The use of `eval()` is a significant security risk as it can execute arbitrary code, leading to potential vulnerabilities such as code injection.",
+        "suggested_fix": "Replace `eval(input)` with a safer method of parsing the input, such as using `JSON.parse()` if the input is expected to be a JSON string.",
+        "improved_code": "function parseDiscount(input) {\n  try {\n    return JSON.parse(input);\n  } catch (e) {\n    throw new Error('Invalid discount input');\n  }\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 2,
+        "severity": "medium",
+        "issue_description": "The `average` function will throw an error if the input array is empty, as it attempts to divide by the length of the array, which is zero.",
+        "suggested_fix": "Add a check to handle the case where the input array is empty to avoid division by zero.",
+        "improved_code": "function average(values) {\n  if (values.length === 0) {\n    throw new Error('Cannot compute average of an empty array');\n  }\n  return values.reduce((sum, value) => sum + value, 0) / values.length;\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 5,
+        "severity": "medium",
+        "issue_description": "The `parseDiscount` function is not well-documented, making it harder to understand its purpose and usage for future maintainers.",
+        "suggested_fix": "Add a comment explaining the purpose and expected input format of the function.",
+        "improved_code": "function parseDiscount(input) {\n  // Parses the input string into a discount object. Expected input format: JSON string.\n  try {\n    return JSON.parse(input);\n  } catch (e) {\n    throw new Error('Invalid discount input');\n  }\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 5,
+        "severity": "high",
+        "issue_description": "The `parseDiscount` function uses `eval()`, which can execute arbitrary code from user input, leading to code injection vulnerabilities.",
+        "suggested_fix": "Replace `eval(input)` with a safer parsing method, such as using `JSON.parse()` if the input is known to be a JSON string.",
+        "improved_code": "function parseDiscount(input) {\n  try {\n    return JSON.parse(input);\n  } catch (e) {\n    throw new Error('Invalid discount format');\n  }\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 3,
+        "severity": "medium",
+        "issue_description": "The `average` function divides by `values.length`, which can be zero if the input array is empty, leading to a division by zero error.",
+        "suggested_fix": "Add a check to ensure the array is not empty before performing the division.",
+        "improved_code": "function average(values) {\n  if (values.length === 0) {\n    throw new Error('Cannot compute average of an empty array');\n  }\n  return values.reduce((sum, value) => sum + value, 0) / values.length;\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 5,
+        "severity": "medium",
+        "issue_description": "The `parseDiscount` function does not validate the input before parsing, which can lead to unexpected behavior or errors if the input is not in the expected format.",
+        "suggested_fix": "Add input validation to ensure the input is a valid JSON string before parsing.",
+        "improved_code": "function parseDiscount(input) {\n  if (typeof input !== 'string' || !input.trim()) {\n    throw new Error('Invalid discount input');\n  }\n  try {\n    return JSON.parse(input);\n  } catch (e) {\n    throw new Error('Invalid discount format');\n  }\n}",
+        "evidence_status": "ai_hypothesis"
+      },
+      {
+        "file_path": "pricing.js",
+        "line_number": 5,
+        "severity": "high",
+        "issue_description": "Dynamic code execution call is present. Exploitability depends on input flow.",
+        "suggested_fix": "Replace dynamic execution with a constrained parser or explicit dispatch.",
+        "improved_code": "",
+        "evidence_status": "static_observation"
+      }
+    ],
+    "agents": [
+      {
+        "agent": "review",
+        "status": "completed",
+        "usage": {
+          "model": "qwen3:8b",
+          "provider": "ollama",
+          "input_tokens": 826,
+          "output_tokens": 518
+        }
+      },
+      {
+        "agent": "security",
+        "status": "completed",
+        "usage": {
+          "model": "qwen3:8b",
+          "provider": "ollama",
+          "input_tokens": 792,
+          "output_tokens": 599
+        }
+      }
+    ],
+    "status": "completed"
+  }
+}

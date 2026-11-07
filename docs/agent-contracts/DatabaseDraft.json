@@ -1,0 +1,187 @@
+{
+  "$defs": {
+    "ApiEndpoint": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "pattern": "^/",
+          "title": "Path",
+          "type": "string"
+        },
+        "method": {
+          "enum": [
+            "get",
+            "post",
+            "put",
+            "patch",
+            "delete"
+          ],
+          "title": "Method",
+          "type": "string"
+        },
+        "summary": {
+          "title": "Summary",
+          "type": "string"
+        },
+        "request_fields": {
+          "items": {
+            "$ref": "#/$defs/ApiField"
+          },
+          "title": "Request Fields",
+          "type": "array"
+        },
+        "response_fields": {
+          "items": {
+            "$ref": "#/$defs/ApiField"
+          },
+          "title": "Response Fields",
+          "type": "array"
+        },
+        "response_is_array": {
+          "title": "Response Is Array",
+          "type": "boolean"
+        },
+        "success_status": {
+          "maximum": 399,
+          "minimum": 200,
+          "title": "Success Status",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "method",
+        "summary",
+        "request_fields",
+        "response_fields",
+        "response_is_array",
+        "success_status"
+      ],
+      "title": "ApiEndpoint",
+      "type": "object"
+    },
+    "ApiField": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "string",
+            "integer",
+            "number",
+            "boolean",
+            "object",
+            "array"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "required": {
+          "title": "Required",
+          "type": "boolean"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "type",
+        "required",
+        "description"
+      ],
+      "title": "ApiField",
+      "type": "object"
+    },
+    "Entity": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "keys": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Keys",
+          "type": "array"
+        },
+        "indexes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Indexes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "fields",
+        "keys",
+        "indexes"
+      ],
+      "title": "Entity",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "summary": {
+      "title": "Summary",
+      "type": "string"
+    },
+    "entities": {
+      "items": {
+        "$ref": "#/$defs/Entity"
+      },
+      "title": "Entities",
+      "type": "array"
+    },
+    "migration_sql": {
+      "title": "Migration Sql",
+      "type": "string"
+    },
+    "er_diagram": {
+      "title": "Er Diagram",
+      "type": "string"
+    },
+    "endpoints": {
+      "items": {
+        "$ref": "#/$defs/ApiEndpoint"
+      },
+      "maxItems": 15,
+      "minItems": 1,
+      "title": "Endpoints",
+      "type": "array"
+    },
+    "performance_notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Performance Notes",
+      "type": "array"
+    }
+  },
+  "required": [
+    "summary",
+    "entities",
+    "migration_sql",
+    "er_diagram",
+    "endpoints",
+    "performance_notes"
+  ],
+  "title": "DatabaseDraft",
+  "type": "object"
+}
